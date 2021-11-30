@@ -1,0 +1,50 @@
+[
+    {
+      "exerciseId": 1.1,
+      "exerciseName": "Handstand",
+      "exerciseSkillLevel": 1,
+      "discription": "Perform a straight handstand in a still position for 2 seconds. "
+    },
+    {
+      "exerciseId": 1.2,
+      "exerciseName": "Quick press Handstand",
+      "exerciseSkillLevel": 2,
+      "discription": "Perform a fast tucked roll. Start with standing upright, tuck in and stand up without using your hands."
+    },
+    {
+      "exerciseId": 1.3,
+      "exerciseName": "Block 2 Trampoline 2 Handstand laydown",
+      "exerciseSkillLevel": 2,
+      "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+    },
+    {
+      "exerciseId": 1.4,
+      "exerciseName": "Run 2 Trampoline 2 Handstand laydown",
+      "exerciseSkillLevel": 3,
+      "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+    },
+    {
+      "exerciseId": 1.5,
+      "exerciseName": "Run 2 Reuther 2 Handstand laydown",
+      "exerciseSkillLevel": 3,
+      "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+    },
+    {
+      "exerciseId": 1.6,
+      "exerciseName": "Handspring over softblocks",
+      "exerciseSkillLevel": 4,
+      "discription": "Run & jump in a trampoline "
+    },
+    {
+      "exerciseId": 1.7,
+      "exerciseName": "Handspring over low Pegasus",
+      "exerciseSkillLevel": 5,
+      "discription": "Perform a tucked frontflip on a elevated platform with assistance of a trainer."
+    },
+    {
+      "exerciseId": 1.8,
+      "exerciseName": "Handspring Competition at Height",
+      "exerciseSkillLevel": 6,
+      "discription": "Perform a tucked frontflip with assistance of a trainer."
+    }
+  ]

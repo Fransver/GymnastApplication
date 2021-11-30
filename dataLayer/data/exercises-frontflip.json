@@ -1,0 +1,58 @@
+[
+  {
+    "exerciseId": 1.1,
+    "exerciseName": "LaydownTuck",
+    "exerciseSkillLevel": 1,
+    "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+  },
+  {
+    "exerciseId": 1.2,
+    "exerciseName": "Fast Tucked Roll",
+    "exerciseSkillLevel": 2,
+    "discription": "Perform a fast tucked roll. Start with standing upright, tuck in and stand up without using your hands."
+  },
+  {
+    "exerciseId": 1.3,
+    "exerciseName": "Jump&Roll",
+    "exerciseSkillLevel": 2,
+    "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+  },
+  {
+    "exerciseId": 1.4,
+    "exerciseName": "Jump&Roll_2",
+    "exerciseSkillLevel": 3,
+    "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+  },
+  {
+    "exerciseId": 1.5,
+    "exerciseName": "Jump&Roll_3",
+    "exerciseSkillLevel": 3,
+    "discription": "Lay down on your back and try to stand up using a tucked position. Watch the movie as an example."
+  },
+  {
+    "exerciseId": 1.6,
+    "exerciseName": "JumpTuckedSit",
+    "exerciseSkillLevel": 4,
+    "discription": "Run & jump in a trampoline "
+  },
+  {
+    "exerciseId": 1.7,
+    "exerciseName": "FrontFlip Spotted Elevation",
+    "exerciseSkillLevel": 5,
+    "discription": "Perform a tucked frontflip on a elevated platform with assistance of a trainer."
+  },
+  {
+    "exerciseId": 1.8,
+    "exerciseName": "FrontFlip Spotted on Mat",
+    "exerciseSkillLevel": 6,
+    "discription": "Perform a tucked frontflip with assistance of a trainer."
+  },
+  {
+    "exerciseId": 1.9,
+    "exerciseName": "Front Flip",
+    "exerciseSkillLevel": 7,
+    "discription": "Perform a tucked frontflip with a run, jump & sticked landing on floor."
+  }
+]
+
+

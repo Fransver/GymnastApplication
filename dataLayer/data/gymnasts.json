@@ -1,0 +1,34 @@
+[
+  {
+    "id" : 1,
+    "name":"Iris",
+    "gender":"Female" ,
+    "skillLevel": 5,
+    "points": 500,
+    "club": "TVSomeren"
+  },
+  {
+    "id" : 2,
+    "name":"Evelien",
+    "gender":"Female" ,
+    "skillLevel": 7,
+    "points":500 ,
+    "club":"Olympia"
+  },
+  {
+    "id" : 3,
+    "name":"Lianne",
+    "gender":"Female" ,
+    "skillLevel": 3,
+    "points": 500,
+    "club":"Heerenveen"
+  },
+  {
+    "id" : 4,
+    "name":"Rob",
+    "gender":"Male" ,
+    "skillLevel": 2,
+    "points": 500,
+    "club":"FlikFlak"
+  }
+]
