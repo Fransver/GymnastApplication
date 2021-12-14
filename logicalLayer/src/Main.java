@@ -1,7 +1,7 @@
 import campus.Campus;
 import dataConvert.DataLayer;
 import models.Gymnast;
-import ui.CampusPage;
+import ui.*;
 
 
 /**
@@ -18,13 +18,12 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Gymnast gymnast = new Gymnast(0,"","",0,0,"");
+
+
         DataLayer dataLayer = new DataLayer();
-
-
-
-        new Campus();
-        new CampusPage();
+        Gymnast gymnast = dataLayer.getGymnasts()[0]; ;
+        Campus campus = new Campus();
+        CampusPage campusPage = new CampusPage(campus, gymnast );
 
 
 

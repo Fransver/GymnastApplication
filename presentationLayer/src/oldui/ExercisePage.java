@@ -1,8 +1,10 @@
-package ui;
+package oldui;
 
+import campus.Campus;
 import campus.Scoremanager;
 import campus.StuckExercise;
 import models.Exercise;
+import models.Gymnast;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,35 +13,24 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.ListIterator;
-import java.util.Scanner;
 
 /**
  * Deze class bevat veel logica in zich en is een onderdeel van UI.
  * Ik ga uitzoeken hoe ik deze logica in de oorspronkelijke classes kan bouwen om ze hier aan te roepen.
  */
 
-public abstract class ExercisePage extends Gymnastpage implements ActionListener {
-
-
-    Scanner myScanner = new Scanner(System.in);
-
-
-
+public abstract class ExercisePage implements ActionListener {
     Scoremanager scoremanager = new Scoremanager();
     StuckExercise stuckExercise = new StuckExercise();
-//    NextPreviousExercise nextPreviousExercise = new NextPreviousExercise();
 
-
-
-    private Exercise[] JsonCourse = campus.getListExercisesFrontflip(); // lege lijst oefeningen. ---> Hoe override ik die?
-    private ListIterator<Exercise> exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
-
-
+    private Exercise[] JsonCourse; // lege lijst oefeningen. ---> Hoe override ik die?
+    private ListIterator<Exercise> exerciseListIterator;
+    private Gymnast gymnast;
 
 
     JFrame exerciseFrame = new JFrame();
     JLabel titleLable = new JLabel();
-    JLabel nameGymnast = new JLabel("User: " + gymnast.getName() );
+    JLabel nameGymnast = new JLabel("User: "  );
     JLabel pointsGymnast = new JLabel("Points: " );
     JButton completeButton = new JButton("Complete");
     JButton campusButton = new JButton("Campus");
@@ -53,9 +44,12 @@ public abstract class ExercisePage extends Gymnastpage implements ActionListener
 
 
     public ExercisePage() throws IOException {
+        super();
 
-
-
+//        gymnast = campus.getGymnasts()[0];
+//
+//        JsonCourse = campus.getListExercisesFrontflip();
+//        exerciseListIterator =  Arrays.stream(JsonCourse).toList().listIterator();
 
         checkBox1.setVisible(false);
         checkBox2.setVisible(false);
@@ -72,7 +66,6 @@ public abstract class ExercisePage extends Gymnastpage implements ActionListener
         discription.setBounds(20, 100, 250, 250);
         discription.setLineWrap(true);
         discription.setWrapStyleWord(true);
-
 
         nameGymnast.setFocusable(false);
         nameGymnast.setBounds(450, 30, 300, 20);
@@ -96,10 +89,6 @@ public abstract class ExercisePage extends Gymnastpage implements ActionListener
         previousButton.addActionListener(this);
         previousButton.setBounds(140, 630, 100, 20);
 
-        campusButton.setFocusable(false);
-        campusButton.addActionListener(this);
-        campusButton.setBounds(20, 630, 100, 20);
-
         exerciseFrame.setSize(750, 750);
         exerciseFrame.setLayout(null);
         exerciseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +99,6 @@ public abstract class ExercisePage extends Gymnastpage implements ActionListener
         exerciseFrame.add(previousButton);
         exerciseFrame.add(nameGymnast);
         exerciseFrame.add(pointsGymnast);
-        exerciseFrame.add(campusButton);
         exerciseFrame.add(titleLable);
         exerciseFrame.add(checkBox1);
         exerciseFrame.add(checkBox2);
@@ -119,14 +107,11 @@ public abstract class ExercisePage extends Gymnastpage implements ActionListener
 
     }
 
-//    public int getScoreUser() {
-//        return scoreUser;
-//    }
-
     public void completeExercise() throws IOException {
         if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) { // with JSON data -> ONLY NEXT
             JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
             if (exerciseListIterator.hasNext()) {
+
 
                 Exercise nextEx = exerciseListIterator.next();
 
@@ -202,18 +187,6 @@ public abstract class ExercisePage extends Gymnastpage implements ActionListener
         }
         if(e.getSource()==previousButton){   // Actie van vorige oefening.
            previousExercise();
-        }
-
-        if (e.getSource() == campusButton) {
-            try {
-                new CampusPage();
-            } catch (java.io.IOException ex) {
-                ex.printStackTrace();
-            }
-            exerciseFrame.dispose();
-
-
-
         }
 
         if (e.getSource() == stuckButton){

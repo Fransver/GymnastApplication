@@ -1,4 +1,4 @@
-package ui;
+package oldui;
 
 
 import campus.Campus;
@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class AlternativeExercisePage extends Gymnastpage implements ActionListen
     Campus campus = new Campus();
 
 
-
     public  AlternativeExercisePage() throws Exception {
+        super();
 
 
         List<String> alternativefrontflipExercises = new ArrayList<>(0);
@@ -41,10 +40,6 @@ public class AlternativeExercisePage extends Gymnastpage implements ActionListen
         namesfrontflip = alternativefrontflipExercises.toArray(new String[0]);
         alterlistFrontflip = new JList(namesfrontflip);
 
-
-        campusButton.setFocusable(false);
-        campusButton.addActionListener(this);
-        campusButton.setBounds(20, 630, 100, 20);
 
         alterlistFrontflip.setFocusable(false);
         alterlistFrontflip.setBounds(20, 100, 350, 300);
@@ -69,13 +64,5 @@ public class AlternativeExercisePage extends Gymnastpage implements ActionListen
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == campusButton) {
-            try {
-                CampusPage campusPage = new CampusPage();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            frame.dispose();
-        }
     }
 }

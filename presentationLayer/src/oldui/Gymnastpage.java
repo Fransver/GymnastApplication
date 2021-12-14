@@ -1,7 +1,8 @@
-package ui;
+package oldui;
 
 
 import campus.Campus;
+import dataConvert.DataLayer;
 import models.Gymnast;
 
 import javax.swing.*;
@@ -15,35 +16,33 @@ import java.io.IOException;
  * Hiermee hoef ik na de login maar 1 keer de gebruiker door te geven (dat is het plan).
  */
 
-public abstract class Gymnastpage implements ActionListener {
+public  class Gymnastpage implements ActionListener {
 
 
 
     JFrame frame = new JFrame();
     JLabel nameGymnast = new JLabel("User: " );
     JLabel pointsGymnast = new JLabel("Points: " );
-    Campus campus = new Campus();
-
-    Gymnast gymnast = campus.getGymnasts()[0];
 
 
-     ; // Deze uiteindelijk via LOGIN meegeven.
 
 
-    public Gymnastpage(Gymnast gymnast) throws IOException {
 
 
-        this.gymnast = gymnast;
+
+    public Gymnastpage() throws IOException {
+
+
 
         nameGymnast.setFocusable(false);
         nameGymnast.setBounds(450, 30, 300, 20);
         nameGymnast.setFont(new Font(null, Font.BOLD, 15));
-        nameGymnast.setText("Hello: " + gymnast.getName());
+        nameGymnast.setText("Hello: ");
 
         pointsGymnast.setFocusable(false);
         pointsGymnast.setBounds(600, 30, 300, 20);
         pointsGymnast.setFont(new Font(null, Font.BOLD, 15));
-        pointsGymnast.setText("Points: " + gymnast.getPoints() );
+        pointsGymnast.setText("Points: " );
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(750,750);
@@ -54,8 +53,6 @@ public abstract class Gymnastpage implements ActionListener {
         frame.add(pointsGymnast);
     }
 
-    public Gymnastpage() throws IOException {
-    }
 
 
     @Override

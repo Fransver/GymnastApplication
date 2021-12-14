@@ -1,4 +1,4 @@
-package ui;
+package oldui;
 
 
 import javax.swing.*;
@@ -14,6 +14,7 @@ public class FrontFlipPage extends CoursePage implements ActionListener {
 
     public FrontFlipPage() throws IOException {
         super();
+
         titleLable.setText("Front Flip Course");
         discription.setText("Welcome to the FrontFlip course.\n\n In this course you will learn how to" +
         "perform a high jumped tucked frontflip that you can use in all sort of ways. After completing" +
@@ -32,7 +33,7 @@ public class FrontFlipPage extends CoursePage implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            courseFrame.dispose();
+
         }
     }
 

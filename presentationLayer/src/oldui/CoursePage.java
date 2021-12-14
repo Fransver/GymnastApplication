@@ -1,35 +1,30 @@
-package ui;
+package oldui;
 
 // Parent of all the course pages.
 
 
-
-import campus.Campus;
-import models.Gymnast;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Scanner;
 
 
-public class CoursePage extends Gymnastpage implements ActionListener {
+public class CoursePage implements ActionListener {
 
-    Scanner myScanner = new Scanner(System.in);
 
     JFrame courseFrame = new JFrame();
     JLabel titleLable = new JLabel();
     JButton campusButton = new JButton("Campus");
     JButton startCourse = new JButton("Start");
     JTextArea discription = new JTextArea("");
-
-    Campus campus = new Campus();
-
     JLabel media = new JLabel(); // label that holds the media.
 
-    Gymnast gymnast = campus.getGymnasts()[0];
+    JLabel nameGymnast = new JLabel("User: " );
+    JLabel pointsGymnast = new JLabel("Points: " );
+
+    private FrontFlipPage frontFlipPage;
 
 
     public CoursePage() throws IOException {
@@ -42,7 +37,6 @@ public class CoursePage extends Gymnastpage implements ActionListener {
 
         media.setBounds(20,300,700,150);
 
-
         discription.setBounds(20, 100, 350, 150);
         discription.setLineWrap(true);
         discription.setWrapStyleWord(true);
@@ -51,16 +45,12 @@ public class CoursePage extends Gymnastpage implements ActionListener {
         nameGymnast.setFocusable(false);
         nameGymnast.setBounds(450, 30, 300, 20);
         nameGymnast.setFont(new Font(null, Font.BOLD, 15));
-        nameGymnast.setText("User:" + gymnast.getName());
+        nameGymnast.setText("User:" );
 
         pointsGymnast.setFocusable(false);
         pointsGymnast.setBounds(600, 30, 300, 20);
         pointsGymnast.setFont(new Font(null, Font.BOLD, 15));
-        pointsGymnast.setText("Points: " + gymnast.getPoints());
-
-        campusButton.setFocusable(false);
-        campusButton.addActionListener(this);
-        campusButton.setBounds(20, 630, 100, 20);
+        pointsGymnast.setText("Points: " );
 
         startCourse.setFocusable(false);
         startCourse.addActionListener(this);
@@ -72,7 +62,6 @@ public class CoursePage extends Gymnastpage implements ActionListener {
         courseFrame.setVisible(true);
 
         courseFrame.add(titleLable);
-        courseFrame.add(campusButton);
         courseFrame.add(startCourse);
         courseFrame.add(nameGymnast);
         courseFrame.add(pointsGymnast);
@@ -83,18 +72,10 @@ public class CoursePage extends Gymnastpage implements ActionListener {
     }
 
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
-        if (e.getSource() == campusButton) {
-            try {
-                new CampusPage();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            courseFrame.dispose();
-        }
 
     }
 

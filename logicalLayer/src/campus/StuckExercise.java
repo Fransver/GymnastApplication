@@ -1,6 +1,6 @@
 package campus;
 
-import ui.AlternativeExercisePage;
+import oldui.AlternativeExercisePage;
 
 import javax.swing.*;
 

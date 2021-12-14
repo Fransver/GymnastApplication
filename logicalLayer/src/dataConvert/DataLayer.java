@@ -25,7 +25,7 @@ import java.util.List;
 public class DataLayer {
 
     final String ApplicationDirectory = "user.dir";
-    final String DataDirectoryName = "dataLayer.data";
+    final String DataDirectoryName = "dataLayer\\data";
 
     final String ExercisesFrontflip = "exercises-frontflip.json";
     final String AlterExercisesFrontflip = "exercises-frontflip-alter.json";
