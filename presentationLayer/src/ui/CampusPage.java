@@ -2,6 +2,7 @@ package ui;
 
 import campus.Campus;
 import campus.Scoremanager;
+import campus.StuckExercise;
 import models.Exercise;
 import models.Gymnast;
 
@@ -10,19 +11,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ListIterator;
 
 public class CampusPage implements ActionListener {
 
     private Gymnast gymnast;
+    private Campus campus;
     private Scoremanager scoremanager = new Scoremanager();
+    private StuckExercise stuckExercise = new StuckExercise();
     private Exercise[] JsonCourse; // lege lijst oefeningen. ---> Hoe override ik die?
     private ListIterator<Exercise> exerciseListIterator;
 
     JFrame frame = new JFrame();
-
     JTextArea discription = new JTextArea("");
+    JList<Exercise> alterlistFrontflip;
 
     JLabel welcomeLabel = new JLabel();
     JLabel welcomeLabel2 = new JLabel();
@@ -37,7 +42,6 @@ public class CampusPage implements ActionListener {
     JButton frontFlip = new JButton("Front Flip");
     JButton fullLayout = new JButton("Full Layout");
     JButton handspring = new JButton("Handspring");
-    JButton newuser = new JButton("New User");
     JButton courseButton = new JButton("Course");
 
     JCheckBox checkBox1 = new JCheckBox("Start");
@@ -47,12 +51,11 @@ public class CampusPage implements ActionListener {
 
     public CampusPage(Campus campus, Gymnast gymnast) throws IOException {
 
-
         this.gymnast = gymnast;
+        this.campus = campus;
 
 
-        JsonCourse = campus.getListExercisesFrontflip();
-        exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
+        JlistAlterExercisesFrontflip();
 
         nameGymnast.setFocusable(false);
         nameGymnast.setBounds(450, 30, 300, 20);
@@ -127,6 +130,11 @@ public class CampusPage implements ActionListener {
         checkBox2.setBounds(20, 500, 300, 20);
         checkBox3.setBounds(20, 550, 300, 20);
 
+        alterlistFrontflip.setFocusable(false);
+        alterlistFrontflip.setBounds(400, 100, 250, 200);
+        alterlistFrontflip.setVisibleRowCount(9);
+        alterlistFrontflip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        alterlistFrontflip.setVisible(false);
 
         frame.add(welcomeLabel);
         frame.add(welcomeLabel2);
@@ -145,6 +153,7 @@ public class CampusPage implements ActionListener {
         frame.add(nameGymnast);
         frame.add(pointsGymnast);
         frame.add(titleLable);
+        frame.add(alterlistFrontflip);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(750, 750);
@@ -158,12 +167,18 @@ public class CampusPage implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frontFlip) {
+            JsonCourse = campus.getListExercisesFrontflip();
+            exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
+            visibleCheckboxesCourse();
             visibleCoursebuttonseFalse();
             visibleExerciseButtonsTrue();
 
         }
 
         if (e.getSource() == handspring) {
+            JsonCourse = campus.getListExercisesHandspring();
+            exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
+            visibleCheckboxesCourse();
             visibleCoursebuttonseFalse();
             visibleExerciseButtonsTrue();
 
@@ -190,10 +205,54 @@ public class CampusPage implements ActionListener {
         if (e.getSource() == courseButton) {
             visibleCourseTrue();
             visibleExerciseButtonsFalse();
-            visibleCheckboxesFalse();
+        }
+
+        if (e.getSource()==stuckButton){
+            JOptionPane.showMessageDialog(null,"Please go to the console! ");
+            if (stuckExercise.stuckExercise()){
+                alterlistFrontflip.setVisible(true);
+
+            }
         }
 
 
+    }
+
+    public void completeExercise() throws IOException {
+        if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
+            visibleCheckboxesFalse();
+            JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
+            Exercise nextEx = exerciseListIterator.next();
+
+
+            if (exerciseListIterator.hasNext()) {
+                titleLable.setText(nextEx.getExerciseName());
+                discription.setText(nextEx.getDiscription());
+
+                int score = scoremanager.distributescoreExercise() + gymnast.getPoints();
+                pointsGymnast.setText("Points: " + score);
+                gymnast.setPoints(score);
+
+
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Congrats, you have completed the course!");
+                int score = scoremanager.distributescoreCourse() + gymnast.getPoints();
+                pointsGymnast.setText("Points" + score);
+                gymnast.setPoints(score);
+            }
+        } else if (checkBox1.isSelected() && checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
+
+        } else if (checkBox2.isSelected() && checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
+        } else if (checkBox1.isSelected() && checkBox2.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
+        } else if (checkBox1.isSelected() || checkBox2.isSelected() || checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "If you can't complete 2 to 3 requirements, maybe it is better" +
+                    "to practice with the previous exercise. ");
+        }
     }
 
     public void visibleCoursebuttonseFalse() {
@@ -228,6 +287,17 @@ public class CampusPage implements ActionListener {
         courseButton.setVisible(false);
     }
 
+    public void JlistAlterExercisesFrontflip(){
+        List<String> alternativefrontflipExercises = new ArrayList<>(0);
+        String[] namesfrontflip = new String[0];
+
+        for (Exercise exercise : campus.getListExercisesFrontflip()){
+            alternativefrontflipExercises.add(exercise.getExerciseName());
+        }
+        namesfrontflip = alternativefrontflipExercises.toArray(new String[0]);
+        alterlistFrontflip = new JList(namesfrontflip);
+    }
+
 
     public void visibleCheckboxesFrontFlip(){
         checkBox1.setVisible(true);
@@ -242,56 +312,24 @@ public class CampusPage implements ActionListener {
         checkBox1.setVisible(false);
         checkBox2.setVisible(false);
         checkBox3.setVisible(false);
+        checkBox1.setSelected(false);
+        checkBox2.setSelected(false);
+        checkBox3.setSelected(false);
     }
 
     public void visibleCheckboxesCourse(){
         checkBox1.setText("Start");
         checkBox2.setText("This");
-        checkBox3.setText("Curse");
+        checkBox3.setText("Course");
+        checkBox1.setVisible(true);
+        checkBox2.setVisible(true);
+        checkBox3.setVisible(true);
     }
 
 
 
 
-    public void completeExercise() throws IOException {
-        if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
-            if (exerciseListIterator.hasNext()) {
 
-
-                Exercise nextEx = exerciseListIterator.next();
-                int score = scoremanager.distributescoreExercise() + gymnast.getPoints();
-                pointsGymnast.setText("Points: " + score);
-                gymnast.setPoints(score);
-
-                titleLable.setText(nextEx.getExerciseName());
-                discription.setText(nextEx.getDiscription());
-
-                // Als er op complete gedrukt wordt resetten de checkboxes weer en verdwijnen ze.
-                checkBox1.setVisible(false);
-                checkBox2.setVisible(false);
-                checkBox3.setVisible(false);
-                checkBox1.setSelected(false);
-                checkBox2.setSelected(false);
-                checkBox3.setSelected(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "Congrats, you have completed the course!");
-                int score = scoremanager.distributescoreCourse() + gymnast.getPoints();
-                pointsGymnast.setText("Points" + score);
-                gymnast.setPoints(score);
-            }
-        } else if (checkBox1.isSelected() && checkBox3.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
-
-        } else if (checkBox2.isSelected() && checkBox3.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
-        } else if (checkBox1.isSelected() && checkBox2.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
-        } else if (checkBox1.isSelected() || checkBox2.isSelected() || checkBox3.isSelected()) {
-            JOptionPane.showMessageDialog(null, "If you can't complete 2 to 3 requirements, maybe it is better" +
-                    "to practice with the previous exercise. ");
-        }
-    }
 
     public void previousExercise() {
         if (exerciseListIterator.hasPrevious()) {

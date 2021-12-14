@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="fasterxml.jackson.module.json" type="repository">
+    <properties maven-id="com.fasterxml:jackson-module-json-org:0.9.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jackson-module-json-org-0.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-mapper-asl-1.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-asl-1.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-20090211.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.8.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

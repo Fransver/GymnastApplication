@@ -18,8 +18,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-
-
         DataLayer dataLayer = new DataLayer();
         Gymnast gymnast = dataLayer.getGymnasts()[0]; ;
         Campus campus = new Campus();

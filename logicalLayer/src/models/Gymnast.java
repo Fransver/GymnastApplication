@@ -10,6 +10,7 @@ public class Gymnast {
     private String club;
 
 
+
     /**
      * To do
      * 1. Field meegeven zoals: Current Exercise

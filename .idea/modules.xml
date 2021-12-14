@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dataLayer/dataLayer.iml" filepath="$PROJECT_DIR$/dataLayer/dataLayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logicalLayer/logicalLayer.iml" filepath="$PROJECT_DIR$/logicalLayer/logicalLayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/presentationLayer/presentationLayer.iml" filepath="$PROJECT_DIR$/presentationLayer/presentationLayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/showcaseap2frans.iml" filepath="$PROJECT_DIR$/.idea/showcaseap2frans.iml" />
+    </modules>
+  </component>
+</project>
