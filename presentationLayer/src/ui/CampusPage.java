@@ -53,11 +53,7 @@ public class CampusPage implements ActionListener {
 
         this.gymnast = gymnast;
         this.campus = campus;
-
-
         JlistAlterExercisesFrontflip();
-
-
 
         nameGymnast.setFocusable(false);
         nameGymnast.setBounds(450, 30, 300, 20);
@@ -192,7 +188,12 @@ public class CampusPage implements ActionListener {
 
         if (e.getSource() == completeButton) {
 
-            completeExerciseVersion2();
+            visibleCheckboxesFrontFlip();
+            try {
+                completeExercise();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         if (e.getSource() == previousButton) {
@@ -215,53 +216,43 @@ public class CampusPage implements ActionListener {
 
     }
 
-    public void completeExerciseVersion2() {
-        Exercise nextEx1 = exerciseListIterator.next();
-        if (exerciseListIterator.hasNext()) {
-            titleLable.setText(nextEx1.getExerciseName());
-            discription.setText(nextEx1.getDiscription());
-            pointsGymnast.setText("Points: " + gymnast.getPoints());
-            int score = scoremanager.distributescoreExercise() + gymnast.getPoints() ;
-            pointsGymnast.setText("Points: " + score);
-            visibleCheckboxesFalse();
+
+    public void completeExercise() throws IOException {
+
+        if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
+
+            Exercise nextEx = exerciseListIterator.next();
+            if (exerciseListIterator.hasNext()) {
+                titleLable.setText(nextEx.getExerciseName());
+                discription.setText(nextEx.getDiscription());
+                int score = scoremanager.distributescoreExercise() + gymnast.getPoints();
+                pointsGymnast.setText("Points: " + score);
+                visibleCheckboxesFalse();
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Congrats, you have completed the course!");
+                int score = scoremanager.distributescoreCourse() + gymnast.getPoints();
+                pointsGymnast.setText("Points" + score);
+                gymnast.setPoints(score);
+            }
+
+        } else if (checkBox1.isSelected() && checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
+
+        } else if (checkBox2.isSelected() && checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
+        } else if (checkBox1.isSelected() && checkBox2.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
+        } else if (checkBox1.isSelected() || checkBox2.isSelected() || checkBox3.isSelected()) {
+            JOptionPane.showMessageDialog(null, "If you can't complete 2 to 3 requirements, maybe it is better" +
+                    "to practice with the previous exercise. ");
         }
     }
 
-//        public void completeExercise () throws IOException {
-//            Exercise nextEx = exerciseListIterator.next();
-//
-//            if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
-//                JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
-//
-//
-//                if (exerciseListIterator.hasNext()) {
-//                    titleLable.setText(nextEx.getExerciseName());
-//                    discription.setText(nextEx.getDiscription());
-//                    int score = scoremanager.distributescoreExercise() + gymnast.getPoints();
-//                    pointsGymnast.setText("Points: " + score);
-//                    gymnast.setPoints(score);
-//                    visibleCheckboxesFalse();
-//                }
-//
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Congrats, you have completed the course!");
-//                int score = scoremanager.distributescoreCourse() + gymnast.getPoints();
-//                pointsGymnast.setText("Points" + score);
-//                gymnast.setPoints(score);
-//            }
-//        } else if (checkBox1.isSelected() && checkBox3.isSelected()) {
-//            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
-//
-//        } else if (checkBox2.isSelected() && checkBox3.isSelected()) {
-//            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
-//        } else if (checkBox1.isSelected() && checkBox2.isSelected()) {
-//            JOptionPane.showMessageDialog(null, "Maybe you can train a little longer before completing!");
-//        } else if (checkBox1.isSelected() || checkBox2.isSelected() || checkBox3.isSelected()) {
-//            JOptionPane.showMessageDialog(null, "If you can't complete 2 to 3 requirements, maybe it is better" +
-//                    "to practice with the previous exercise. ");
-//        }
-//    }
+
+
 
     public void visibleCoursebuttonseFalse() {
         frontFlip.setVisible(false);
