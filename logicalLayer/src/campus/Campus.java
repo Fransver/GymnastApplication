@@ -15,17 +15,23 @@ public class Campus {
     private Gymnast[] listGymnasts;
     private Exercise[] listExercisesFrontflip;
     private Exercise[] listExercisesHandspring;
+    private Exercise[] listAlterExercisesFrontflip;
+
 
     Scanner myScanner = new Scanner(System.in);
     DataLayer dataLayer = new DataLayer();
-
-
 
     public Campus() throws IOException {
         this.listGymnasts = dataLayer.getGymnasts();
         this.listExercisesFrontflip = dataLayer.getExercisesFrontflip();
         this.listExercisesHandspring = dataLayer.getExercisesHandspring();
+        this.listAlterExercisesFrontflip = dataLayer.getAlterExercisesFrontflip();
 
+
+    }
+
+    public Exercise[] getListAlterExercisesFrontflip() {
+        return listAlterExercisesFrontflip;
     }
 
     public Exercise[] getListExercisesFrontflip() {
@@ -44,18 +50,6 @@ public class Campus {
         return listGymnasts;
     }
 
-
-    //////////////////// List Courses
-    public static ArrayList<Course> Listcourses() {
-        ArrayList<Course> courses = new ArrayList<>();
-        Course frontFlip = new Course("TuckedFrontFlip", 9, 4, 200);
-        Course layout = new Course("Full Layout", 10, 10, 400);
-        Course handspring = new Course("Handspring", 12, 6, 300);
-        courses.add(frontFlip);
-        courses.add(layout);
-        courses.add(handspring);
-        return courses;
-    }
 
 
 }

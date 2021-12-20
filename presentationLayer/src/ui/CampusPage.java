@@ -7,6 +7,8 @@ import models.Exercise;
 import models.Gymnast;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +30,7 @@ public class CampusPage implements ActionListener {
     JFrame frame = new JFrame();
     JTextArea discription = new JTextArea("");
     JList<Exercise> alterlistFrontflip;
+    DefaultListModel<Exercise> model = new DefaultListModel<>();
 
     JLabel welcomeLabel = new JLabel();
     JLabel welcomeLabel2 = new JLabel();
@@ -43,6 +46,7 @@ public class CampusPage implements ActionListener {
     JButton fullLayout = new JButton("Full Layout");
     JButton handspring = new JButton("Handspring");
     JButton courseButton = new JButton("Course");
+    JButton select = new JButton("Select");
 
     JCheckBox checkBox1 = new JCheckBox("Start");
     JCheckBox checkBox2 = new JCheckBox("This");
@@ -111,28 +115,48 @@ public class CampusPage implements ActionListener {
         completeButton.setBounds(600, 630, 100, 20);
         completeButton.setVisible(false);
 
+
+
+        select.setFocusable(false);
+        select.setBounds(550,325,100,20);
+        select.setVisible(false);
+        select.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int[] nummers = alterlistFrontflip.getSelectedIndices();
+                for (int i = 0; i <nummers.length ; i++) {
+                    Exercise ex = campus.getListAlterExercisesFrontflip()[i];
+                    discription.setText(ex.getDiscription());
+                    titleLable.setText(ex.getExerciseName());
+                }
+            }
+        });
+
+
         stuckButton.setFocusable(false);
         stuckButton.addActionListener(this);
-        stuckButton.setBounds(480, 630, 100, 20);
+        stuckButton.setBounds(480,630,100,20);
         stuckButton.setVisible(false);
 
         previousButton.setFocusable(false);
         previousButton.addActionListener(this);
-        previousButton.setBounds(360, 630, 100, 20);
+        previousButton.setBounds(360,630,100,20);
         previousButton.setVisible(false);
 
         checkBox1.setVisible(false);
         checkBox2.setVisible(false);
         checkBox3.setVisible(false);
-        checkBox1.setBounds(20, 450, 300, 20);
-        checkBox2.setBounds(20, 500, 300, 20);
-        checkBox3.setBounds(20, 550, 300, 20);
+        checkBox1.setBounds(20,450,300,20);
+        checkBox2.setBounds(20,500,300,20);
+        checkBox3.setBounds(20,550,300,20);
 
         alterlistFrontflip.setFocusable(false);
-        alterlistFrontflip.setBounds(400, 100, 250, 200);
+        alterlistFrontflip.setBounds(400,100,250,200);
         alterlistFrontflip.setVisibleRowCount(9);
         alterlistFrontflip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         alterlistFrontflip.setVisible(false);
+
+
 
         frame.add(welcomeLabel);
         frame.add(welcomeLabel2);
@@ -148,15 +172,17 @@ public class CampusPage implements ActionListener {
         frame.add(stuckButton);
         frame.add(previousButton);
         frame.add(courseButton);
+        frame.add(select);
         frame.add(nameGymnast);
         frame.add(pointsGymnast);
         frame.add(titleLable);
         frame.add(alterlistFrontflip);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(750, 750);
+        frame.setSize(750,750);
         frame.setLayout(null);
         frame.setVisible(true);
+
 
 
     }
@@ -209,8 +235,12 @@ public class CampusPage implements ActionListener {
             JOptionPane.showMessageDialog(null, "Please go to the console! ");
             if (stuckExercise.stuckExercise()) {
                 alterlistFrontflip.setVisible(true);
-
+                select.setVisible(true);
             }
+        }
+
+        if (e.getSource() == select){
+
         }
 
 
@@ -254,6 +284,8 @@ public class CampusPage implements ActionListener {
 
 
 
+
+
     public void visibleCoursebuttonseFalse() {
         frontFlip.setVisible(false);
         handspring.setVisible(false);
@@ -290,11 +322,12 @@ public class CampusPage implements ActionListener {
         List<String> alternativefrontflipExercises = new ArrayList<>(0);
         String[] namesfrontflip = new String[0];
 
-        for (Exercise exercise : campus.getListExercisesFrontflip()){
+        for (Exercise exercise : campus.getListAlterExercisesFrontflip()){
             alternativefrontflipExercises.add(exercise.getExerciseName());
         }
         namesfrontflip = alternativefrontflipExercises.toArray(new String[0]);
         alterlistFrontflip = new JList(namesfrontflip);
+
     }
 
 
@@ -324,10 +357,6 @@ public class CampusPage implements ActionListener {
         checkBox2.setVisible(true);
         checkBox3.setVisible(true);
     }
-
-
-
-
 
 
     public void previousExercise() {

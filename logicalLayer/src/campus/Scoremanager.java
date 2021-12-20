@@ -2,7 +2,7 @@ package campus;
 
 import interfaces.IScoreDistributer;
 
-public class Scoremanager implements IScoreDistributer {
+public class Scoremanager implements IScoreDistributer  {
     private int score;
 
     public Scoremanager(){

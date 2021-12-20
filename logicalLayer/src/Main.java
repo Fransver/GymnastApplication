@@ -18,6 +18,14 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
+        /**
+         * LOGIN:  Iris
+         * Password: TVSomeren
+         */
+
+//        IdAndPasswords idandpasswords = new IdAndPasswords();
+//        new LoginPage(idandpasswords.getLoginInfo());
+
         DataLayer dataLayer = new DataLayer();
         Gymnast gymnast = dataLayer.getGymnasts()[0]; ;
         Campus campus = new Campus();
@@ -27,13 +35,7 @@ public class Main {
 
 
 
-        /**
-         * LOGIN:  Iris
-         * Password: TVSomeren
-         */
 
-//        IdAndPasswords idandpasswords = new IdAndPasswords();
-//        new LoginPage(idandpasswords.getLoginInfo());
 
     }
 

@@ -157,7 +157,7 @@ public class DataLayer {
         List<campus.SuggestAlterCourse> feedbackList = new ArrayList<SuggestAlterCourse>();
         for (Feedback feedbackDate : feedbacks){
             campus.SuggestAlterCourse feedback = new campus.SuggestAlterCourse( feedbackDate.frustrationScore,
-                    feedbackDate.feedbackCourse, feedbackDate.attemptsExercise);
+                     feedbackDate.attemptsExercise);
             feedbackList.add(feedback);
         }
         return feedbackList.toArray(new campus.SuggestAlterCourse[0]);

@@ -5,21 +5,28 @@ import java.util.Scanner;
 public class SuggestAlterCourse { // Main function for deciding if user benefits from another course.
 
     private int frustrationScore;
-    private String feedbackCourse;
     private int attemptsExercise;
 
     Scanner scanner = new Scanner(System.in);
 
-    public SuggestAlterCourse(int frustrationScore, String feedbackCourse, int attemptsExercise){
+    public SuggestAlterCourse(int frustrationScore, int attemptsExercise){
 
         this.frustrationScore = frustrationScore;
-        this.feedbackCourse = feedbackCourse;
         this.attemptsExercise = attemptsExercise;
     }
 
     public int getAttemptsExercise() {
         System.out.println("Give an estimate of the number of attempts: ");
-        scanner.nextInt();
+        System.out.println("1)\t0-10 Attempts ");
+        System.out.println("2)\t11-20 Attempts ");
+        System.out.println("3)\tLost the count, far to many!");
+
+        try {
+            attemptsExercise = scanner.nextInt();
+            System.out.println("You choose " + attemptsExercise);
+        } catch (Exception e){
+            System.out.printf("Wrong Input");
+        }
         return attemptsExercise;
     }
 
@@ -38,15 +45,10 @@ public class SuggestAlterCourse { // Main function for deciding if user benefits
     }
 
 
-    public String getFeedbackCourse() {
-        System.out.println("Any tips for improvement ??");
-        feedbackCourse = scanner.next();
-        return feedbackCourse;
-    }
 
-    public void collectFeedbackAlterCourse(int frustrationScore, int attemptsExercise, String feedbackCourse){
-        getFrustrationScore();
-        getFeedbackCourse();
-        getAttemptsExercise();
+
+    public int collectFeedbackAlterCourse(){
+        int feedbackscore = attemptsExercise + frustrationScore;
+        return feedbackscore;
     }
 }
