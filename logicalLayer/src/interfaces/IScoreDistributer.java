@@ -1,9 +1,9 @@
 package interfaces;
 
 public interface IScoreDistributer {
-    public int distributescoreCourse();
-    public int distributescoreExercise();
-    public int subtractscoreExercise();
+    int distributescoreCourse();
+    int distributescoreExercise();
+    int subtractscoreExercise();
 
 
 }

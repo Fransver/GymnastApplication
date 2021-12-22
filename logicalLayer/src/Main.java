@@ -26,10 +26,10 @@ public class Main {
 //        IdAndPasswords idandpasswords = new IdAndPasswords();
 //        new LoginPage(idandpasswords.getLoginInfo());
 
-        DataLayer dataLayer = new DataLayer();
+        DataLayer dataLayer = new DataLayer(); //optie interface injecteren in Campus
         Gymnast gymnast = dataLayer.getGymnasts()[0]; ;
         Campus campus = new Campus();
-        CampusPage campusPage = new CampusPage(campus, gymnast );
+        CampusPage campusPage = new CampusPage(campus, gymnast ); //
 
 
 

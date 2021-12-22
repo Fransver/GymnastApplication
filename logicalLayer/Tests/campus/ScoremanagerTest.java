@@ -24,7 +24,7 @@ class ScoremanagerTest {
     @org.junit.jupiter.api.Test // mockito krijg ik niet werkend. Missende Jar??
     void distributescoreExercise() {
         Gymnast gym2 = Mockito.mock(Gymnast.class);
-        Mockito.when(gym2.getPoints()).thenReturn(200);
+        Mockito.when(gym2.getPoints()).thenReturn(100);
 
         int expectedScore = 110;
         int actualScore = gym2.getPoints() + testScoremanager.distributescoreExercise();
