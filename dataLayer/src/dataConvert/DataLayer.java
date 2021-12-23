@@ -1,14 +1,16 @@
 package dataConvert;
 
+
 // krijg de data niet werkend.
 
-import ui.SuggestAlterCourseConsole;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataTransfer.Exercise;
 import dataTransfer.Feedback;
 import dataTransfer.Gymnast;
+import interfaces.IDataLayer;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +24,7 @@ import java.util.List;
  */
 
 
-public class DataLayer {
+public class DataLayer implements IDataLayer {
 
     final String ApplicationDirectory = "user.dir";
     final String DataDirectoryName = "dataLayer\\data";
@@ -71,13 +73,13 @@ public class DataLayer {
         return mapper.readValue(Paths.get(dataDirectoryName, ExercisesFrontflip).toFile(), Exercise[].class);
     }
 
-    public models.Exercise[] getExercisesFrontflip()  throws JsonParseException, JsonMappingException, IOException {
+    public models.Exercise[] getExercisesFrontflip() throws JsonParseException, JsonMappingException, IOException {
         // Load FrontFlip data
         Exercise[] frontflipsData = loadExercisesFrontflip();
         // Create the FrontFlip exercises
         List<models.Exercise> frontflipList = new ArrayList<models.Exercise>();
-        for (Exercise frontflipData : frontflipsData){
-           models.Exercise frontflipExercise = new models.Exercise(frontflipData.exerciseId, frontflipData.exerciseName, frontflipData.exerciseSkillLevel
+        for (Exercise frontflipData : frontflipsData) {
+            models.Exercise frontflipExercise = new models.Exercise(frontflipData.exerciseId, frontflipData.exerciseName, frontflipData.exerciseSkillLevel
                     , frontflipData.discription);
             frontflipList.add(frontflipExercise);
         }
@@ -92,12 +94,12 @@ public class DataLayer {
     }
 
 
-    public  models.Exercise[] getExercisesHandspring()  throws JsonParseException, JsonMappingException, IOException {
+    public models.Exercise[] getExercisesHandspring() throws JsonParseException, JsonMappingException, IOException {
         // Load Handpspring data
         Exercise[] handspringsData = loadExercisesHandspring();
         // Create the Handspring exercises
         List<models.Exercise> handspringList = new ArrayList<>();
-        for (Exercise handspringData : handspringsData){
+        for (Exercise handspringData : handspringsData) {
             models.Exercise handspringExercise = new models.Exercise(handspringData.exerciseId, handspringData.exerciseName, handspringData.exerciseSkillLevel
                     , handspringData.discription);
             handspringList.add(handspringExercise);
@@ -110,12 +112,12 @@ public class DataLayer {
         return mapper.readValue(Paths.get(dataDirectoryName, EmptyList).toFile(), Exercise[].class);
     }
 
-    public  models.Exercise[] getEmptyExerciseList()  throws JsonParseException, JsonMappingException, IOException {
+    public models.Exercise[] getEmptyExerciseList() throws JsonParseException, JsonMappingException, IOException {
         // Load Empty data
         Exercise[] emptyExercisesData = loadEmptyExerciseList();
         // Create the Empty exercises
         List<models.Exercise> emptyList = new ArrayList<>();
-        for (Exercise emptyExercisedata  : emptyExercisesData){
+        for (Exercise emptyExercisedata : emptyExercisesData) {
             models.Exercise emptyExercise = new models.Exercise(emptyExercisedata.exerciseId, emptyExercisedata.exerciseName, emptyExercisedata.exerciseSkillLevel
                     , emptyExercisedata.discription);
             emptyList.add(emptyExercise);
@@ -129,12 +131,12 @@ public class DataLayer {
         return mapper.readValue(Paths.get(dataDirectoryName, AlterExercisesFrontflip).toFile(), Exercise[].class);
     }
 
-    public models.Exercise[] getAlterExercisesFrontflip()  throws JsonParseException, JsonMappingException, IOException {
+    public models.Exercise[] getAlterExercisesFrontflip() throws JsonParseException, JsonMappingException, IOException {
         // Load FrontFlip data
         Exercise[] alterFrontflipsData = loadAlterExercisesFrontflip();
         // Create the FrontFlip exercises
         List<models.Exercise> alterfrontflipList = new ArrayList<>();
-        for (Exercise alterfrontflipData : alterFrontflipsData){
+        for (Exercise alterfrontflipData : alterFrontflipsData) {
             models.Exercise alterFrontflipExercise = new models.Exercise(alterfrontflipData.exerciseId, alterfrontflipData.exerciseName, alterfrontflipData.exerciseSkillLevel
                     , alterfrontflipData.discription);
             alterfrontflipList.add(alterFrontflipExercise);
@@ -150,18 +152,18 @@ public class DataLayer {
         return mapper.readValue(Paths.get(dataDirectoryName, FeedbackList).toFile(), Feedback[].class);
     }
 
-    public SuggestAlterCourseConsole[] getFeedbackfromAlterCourse()  throws JsonParseException, JsonMappingException, IOException {
-        // Load Feedback data
-        Feedback[] feedbacks = loadFeedback();
-        // Create the feedback data
-        List<SuggestAlterCourseConsole> feedbackList = new ArrayList<SuggestAlterCourseConsole>();
-        for (Feedback feedbackDate : feedbacks){
-            SuggestAlterCourseConsole feedback = new SuggestAlterCourseConsole( feedbackDate.frustrationScore,
-                     feedbackDate.attemptsExercise);
-            feedbackList.add(feedback);
-        }
-        return feedbackList.toArray(new SuggestAlterCourseConsole[0]);
-    }
+//    public SuggestAlterCourseConsole[] getFeedbackfromAlterCourse() throws JsonParseException, JsonMappingException, IOException {
+//        // Load Feedback data
+//        Feedback[] feedbacks = loadFeedback();
+//        // Create the feedback data
+//        List<SuggestAlterCourseConsole> feedbackList = new ArrayList<SuggestAlterCourseConsole>();
+//        for (Feedback feedbackDate : feedbacks) {
+//            SuggestAlterCourseConsole feedback = new SuggestAlterCourseConsole(feedbackDate.frustrationScore,
+//                    feedbackDate.attemptsExercise);
+//            feedbackList.add(feedback);
+//        }
+//        return feedbackList.toArray(new SuggestAlterCourseConsole[0]);
+//    }
 
 }
 

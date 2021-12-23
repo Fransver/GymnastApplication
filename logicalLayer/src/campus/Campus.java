@@ -1,12 +1,11 @@
 package campus;
 
-import dataConvert.DataLayer;
-import models.Course;
+
+import interfaces.IDataLayer;
 import models.Exercise;
 import models.Gymnast;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -19,9 +18,10 @@ public class Campus {
 
 
     Scanner myScanner = new Scanner(System.in);
-    DataLayer dataLayer = new DataLayer();
+    IDataLayer dataLayer;
 
-    public Campus() throws IOException {
+    public Campus(IDataLayer dataLayer) throws IOException {
+        this.dataLayer = dataLayer;
         this.listGymnasts = dataLayer.getGymnasts();
         this.listExercisesFrontflip = dataLayer.getExercisesFrontflip();
         this.listExercisesHandspring = dataLayer.getExercisesHandspring();
@@ -46,9 +46,6 @@ public class Campus {
         return  listGymnasts;
     }
 
-    public Gymnast[] getListGymnasts() {
-        return listGymnasts;
-    }
 
 
 

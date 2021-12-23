@@ -1,5 +1,6 @@
 import campus.Campus;
 import dataConvert.DataLayer;
+import interfaces.IDataLayer;
 import models.Gymnast;
 import ui.*;
 
@@ -26,10 +27,9 @@ public class Main {
 //        IdAndPasswords idandpasswords = new IdAndPasswords();
 //        new LoginPage(idandpasswords.getLoginInfo());
 
-        DataLayer dataLayer = new DataLayer(); //optie interface injecteren in Campus
-        Gymnast gymnast = dataLayer.getGymnasts()[0]; ;
-        Campus campus = new Campus();
-        CampusPage campusPage = new CampusPage(campus, gymnast ); //
+        IDataLayer dataLayer = new DataLayer(); //Interface vanuit de dataLayer
+        Campus campus = new Campus(dataLayer);
+        CampusPage campusPage = new CampusPage(campus); //
 
 
 

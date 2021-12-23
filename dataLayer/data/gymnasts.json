@@ -1,30 +1,30 @@
 [
   {
-    "id" : 1,
-    "name":"Iris",
-    "gender":"Female" ,
+    "id": 1,
+    "name": "Iris",
+    "gender": "Female",
     "points": 500,
     "club": "TVSomeren"
   },
   {
-    "id" : 2,
-    "name":"Evelien",
-    "gender":"Female" ,
-    "points":500 ,
-    "club":"Olympia"
+    "id": 2,
+    "name": "Evelien",
+    "gender": "Female",
+    "points": 500,
+    "club": "Olympia"
   },
   {
-    "id" : 3,
-    "name":"Lianne",
-    "gender":"Female" ,
+    "id": 3,
+    "name": "Lianne",
+    "gender": "Female",
     "points": 500,
-    "club":"Heerenveen"
+    "club": "Heerenveen"
   },
   {
-    "id" : 4,
-    "name":"Rob",
-    "gender":"Male" ,
+    "id": 4,
+    "name": "Rob",
+    "gender": "Male",
     "points": 500,
-    "club":"FlikFlak"
+    "club": "FlikFlak"
   }
 ]

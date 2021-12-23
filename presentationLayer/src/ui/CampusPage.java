@@ -2,6 +2,7 @@ package ui;
 
 import campus.Campus;
 import campus.Scoremanager;
+import interfaces.IDataLayer;
 import models.Exercise;
 import models.Gymnast;
 
@@ -67,10 +68,10 @@ public class CampusPage implements ActionListener {
     JTextField frustration = stuckExerciseSwing.getFrustrationField();
 
 
-    public CampusPage(Campus campus, Gymnast gymnast) throws IOException {
+    public CampusPage(Campus campus) throws IOException {
 
-        this.gymnast = gymnast;
         this.campus = campus;
+        this.gymnast = campus.getGymnasts()[0];
         JlistAlterExercisesFrontflip();
 
 
@@ -219,6 +220,7 @@ public class CampusPage implements ActionListener {
             if (stuckExerciseSwing.userIsStuck()){
                 stuckExerciseSwing.stuckExerciseFieldsVisibleFalse();
                 alterlistFrontflip.setVisible(true);
+                select.setVisible(true);
 
             }
         }
