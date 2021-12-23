@@ -1,8 +1,7 @@
 package oldui;
 
-import campus.Campus;
 import campus.Scoremanager;
-import campus.StuckExercise;
+import ui.StuckExerciseConsole;
 import models.Exercise;
 import models.Gymnast;
 
@@ -11,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.ListIterator;
 
 /**
@@ -21,7 +19,7 @@ import java.util.ListIterator;
 
 public abstract class ExercisePage implements ActionListener {
     Scoremanager scoremanager = new Scoremanager();
-    StuckExercise stuckExercise = new StuckExercise();
+    StuckExerciseConsole stuckExercise = new StuckExerciseConsole();
 
     private Exercise[] JsonCourse; // lege lijst oefeningen. ---> Hoe override ik die?
     private ListIterator<Exercise> exerciseListIterator;
@@ -190,7 +188,7 @@ public abstract class ExercisePage implements ActionListener {
         }
 
         if (e.getSource() == stuckButton){
-            stuckExercise.stuckExercise();
+            stuckExercise.userIsStuck();
         }
 
     }

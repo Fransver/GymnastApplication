@@ -2,7 +2,7 @@ package dataConvert;
 
 // krijg de data niet werkend.
 
-import campus.SuggestAlterCourse;
+import ui.SuggestAlterCourseConsole;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,7 +58,7 @@ public class DataLayer {
         // Create the people
         List<models.Gymnast> gymnastsList = new ArrayList<models.Gymnast>();
         for (Gymnast gymnastData : gymnastsData) {
-            models.Gymnast gymnast = new models.Gymnast(gymnastData.id, gymnastData.name, gymnastData.gender, gymnastData.skillLevel, gymnastData.points,
+            models.Gymnast gymnast = new models.Gymnast(gymnastData.id, gymnastData.name, gymnastData.gender, gymnastData.points,
                     gymnastData.club);
             gymnastsList.add(gymnast);
         }
@@ -150,17 +150,17 @@ public class DataLayer {
         return mapper.readValue(Paths.get(dataDirectoryName, FeedbackList).toFile(), Feedback[].class);
     }
 
-    public SuggestAlterCourse[] getFeedbackfromAlterCourse()  throws JsonParseException, JsonMappingException, IOException {
+    public SuggestAlterCourseConsole[] getFeedbackfromAlterCourse()  throws JsonParseException, JsonMappingException, IOException {
         // Load Feedback data
         Feedback[] feedbacks = loadFeedback();
         // Create the feedback data
-        List<campus.SuggestAlterCourse> feedbackList = new ArrayList<SuggestAlterCourse>();
+        List<SuggestAlterCourseConsole> feedbackList = new ArrayList<SuggestAlterCourseConsole>();
         for (Feedback feedbackDate : feedbacks){
-            campus.SuggestAlterCourse feedback = new campus.SuggestAlterCourse( feedbackDate.frustrationScore,
+            SuggestAlterCourseConsole feedback = new SuggestAlterCourseConsole( feedbackDate.frustrationScore,
                      feedbackDate.attemptsExercise);
             feedbackList.add(feedback);
         }
-        return feedbackList.toArray(new campus.SuggestAlterCourse[0]);
+        return feedbackList.toArray(new SuggestAlterCourseConsole[0]);
     }
 
 }

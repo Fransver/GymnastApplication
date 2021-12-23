@@ -1,15 +1,16 @@
 package campus;
 
 import org.junit.jupiter.api.Test;
+import ui.SuggestAlterCourseConsole;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StuckExerciseTest {
+class StuckExerciseConsoleTest {
 
     @Test
     void stuckExerciseWhenNotEnoughFeedbackPoints() {
         // Feedback with 3 Stresspoints
-        SuggestAlterCourse testStuck = new SuggestAlterCourse(2, 1);
+        SuggestAlterCourseConsole testStuck = new SuggestAlterCourseConsole(2, 1);
 
         // Method Boolean
         boolean stuckExerciseShowList;
@@ -29,7 +30,7 @@ class StuckExerciseTest {
     @Test
     void stuckExerciseWhenEnoughFeedbackPoints() {
         // Feedback with 6 Stresspoints
-        SuggestAlterCourse testStuck = new SuggestAlterCourse(3, 3);
+        SuggestAlterCourseConsole testStuck = new SuggestAlterCourseConsole(3, 3);
 
         // Method Boolean
         boolean stuckExerciseShowList;

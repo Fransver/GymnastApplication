@@ -1,11 +1,12 @@
 package models;
 
-public class Gymnast {
+import interfaces.IUser;
+
+public class Gymnast implements IUser {
 
     private int id;
     private String name;
     private String gender;
-    private int skillLevel;
     private int points;
     private String club;
 
@@ -19,16 +20,14 @@ public class Gymnast {
      *
      */
 
-    public Gymnast(int id, String name, String gender, int skillLevel, int points, String club) {
+    public Gymnast(int id, String name, String gender, int points, String club) {
         this.id = id;
         this.name = name;
         this.gender = gender;
-        this.skillLevel = skillLevel;
         this.points = points;
         this.club = club;
 
     }
-
     public int getId() {
         return id;
     }
@@ -41,9 +40,6 @@ public class Gymnast {
         return gender;
     }
 
-    public int getSkillLevel() {
-        return skillLevel;
-    }
 
     public int getPoints() {
         return points;
@@ -56,8 +52,6 @@ public class Gymnast {
     public void setPoints(int points) {
         this.points = points;
     }
-
-
 
 }
 

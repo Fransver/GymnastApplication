@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ScoremanagerTest {
 
     Scoremanager testScoremanager = new Scoremanager();
-    Gymnast gym1 = new Gymnast(1, "test", "male", 2, 200, "testclub");
+    Gymnast gym1 = new Gymnast(1, "test", "male", 200, "testclub");
 
 
     @org.junit.jupiter.api.Test // met aangemaakte Gymnast

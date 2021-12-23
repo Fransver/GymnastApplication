@@ -2,7 +2,6 @@ package ui;
 
 import campus.Campus;
 import campus.Scoremanager;
-import campus.StuckExercise;
 import models.Exercise;
 import models.Gymnast;
 
@@ -21,12 +20,13 @@ public class CampusPage implements ActionListener {
     private Gymnast gymnast;
     private Campus campus;
     private Scoremanager scoremanager = new Scoremanager();
-    private StuckExercise stuckExercise = new StuckExercise();
+    private StuckExerciseConsole stuckExercise = new StuckExerciseConsole();
     private Exercise[] JsonCourse; // lege lijst oefeningen. ---> Hoe override ik die?
     private ListIterator<Exercise> exerciseListIterator;
     private Buttons buttons = new Buttons();
     private Labels labels = new Labels();
     private Checkboxes checkboxes = new Checkboxes();
+    private SwingStuckExercise stuckExerciseSwing = new SwingStuckExercise();
 
 
 
@@ -41,6 +41,8 @@ public class CampusPage implements ActionListener {
     JLabel nameGymnast = labels.getNameGymnast();
     JLabel pointsGymnast = labels.getPointsGymnast();
     JLabel titleLable = labels.getTitleLable();
+    JLabel attemptsLabel = stuckExerciseSwing.getAttempts();
+    JLabel frustrationLabel = stuckExerciseSwing.getFrustration();
 
     // Buttons
     JButton completeButton = buttons.getCompleteButton();
@@ -51,11 +53,18 @@ public class CampusPage implements ActionListener {
     JButton fullLayout = buttons.getFullLayout();
     JButton handspring = buttons.getHandspring();
     JButton select = buttons.getSelect();
+    JButton submitAtt = stuckExerciseSwing.getSubmitatt();
+    JButton submitFrus = stuckExerciseSwing.getSubmitfrus();
+    JButton alterCourse = stuckExerciseSwing.getAlterCourse();
 
     // Checkboxes
     JCheckBox checkBox1 = checkboxes.getCheckBox1();
     JCheckBox checkBox2 = checkboxes.getCheckBox2();
     JCheckBox checkBox3 = checkboxes.getCheckBox3();
+
+    // Textfields
+    JTextField attempts = stuckExerciseSwing.getAttemptsField();
+    JTextField frustration = stuckExerciseSwing.getFrustrationField();
 
 
     public CampusPage(Campus campus, Gymnast gymnast) throws IOException {
@@ -74,6 +83,9 @@ public class CampusPage implements ActionListener {
         handspring.addActionListener(this);
         fullLayout.addActionListener(this);
         frontFlip.addActionListener(this);
+        submitAtt.addActionListener(this);
+        submitFrus.addActionListener(this);
+        alterCourse.addActionListener(this);
 
         // Interaction User
         nameGymnast.setText("Name: " + gymnast.getName());
@@ -128,6 +140,13 @@ public class CampusPage implements ActionListener {
         frame.add(pointsGymnast);
         frame.add(titleLable);
         frame.add(alterlistFrontflip);
+        frame.add(attempts);
+        frame.add(frustration);
+        frame.add(submitAtt);
+        frame.add(submitFrus);
+        frame.add(frustrationLabel);
+        frame.add(attemptsLabel);
+        frame.add(alterCourse);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(750,750);
@@ -183,15 +202,25 @@ public class CampusPage implements ActionListener {
         }
 
         if (e.getSource() == stuckButton) {
-            JOptionPane.showMessageDialog(null, "Please go to the console! ");
-            if (stuckExercise.stuckExercise()) {
-                alterlistFrontflip.setVisible(true);
-                select.setVisible(true);
-            }
+            stuckExerciseSwing.stuckExerciseFieldsVisibleTrue();
+            alterlistFrontflip.setVisible(false);
         }
 
-        if (e.getSource() == select){
+        if (e.getSource() == submitAtt){
+            stuckExerciseSwing.attemptsExercise();
 
+        }
+
+        if (e.getSource() == submitFrus){
+            stuckExerciseSwing.frustrationScore();
+        }
+
+        if (e.getSource() == alterCourse){
+            if (stuckExerciseSwing.userIsStuck()){
+                stuckExerciseSwing.stuckExerciseFieldsVisibleFalse();
+                alterlistFrontflip.setVisible(true);
+
+            }
         }
 
 
@@ -231,9 +260,6 @@ public class CampusPage implements ActionListener {
                     "to practice with the previous exercise. ");
         }
     }
-
-
-
 
 
     public void visibleCourseTrue() {

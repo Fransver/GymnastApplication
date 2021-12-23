@@ -1,15 +1,15 @@
-package campus;
+package ui;
 
 import java.util.Scanner;
 
-public class SuggestAlterCourse { // Main function for deciding if user benefits from another course.
+public class SuggestAlterCourseConsole { // Main function for deciding if user benefits from another course.
 
     private int frustrationScore;
     private int attemptsExercise;
 
     Scanner scanner = new Scanner(System.in);
 
-    public SuggestAlterCourse(int frustrationScore, int attemptsExercise){
+    public SuggestAlterCourseConsole(int frustrationScore, int attemptsExercise){
 
         this.frustrationScore = frustrationScore;
         this.attemptsExercise = attemptsExercise;

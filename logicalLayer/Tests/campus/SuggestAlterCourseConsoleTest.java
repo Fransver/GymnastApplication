@@ -1,15 +1,16 @@
 package campus;
 
 import org.junit.jupiter.api.Test;
+import ui.SuggestAlterCourseConsole;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SuggestAlterCourseTest {
+class SuggestAlterCourseConsoleTest {
 
 
     @Test
     void assertWhenCollectFeedbackIntIsEnough() {
-        SuggestAlterCourse testStuck = new SuggestAlterCourse(1,3);
+        SuggestAlterCourseConsole testStuck = new SuggestAlterCourseConsole(1,3);
 
         testStuck.collectFeedbackAlterCourse();
         assertTrue(true);
@@ -17,7 +18,7 @@ class SuggestAlterCourseTest {
 
     @Test
     void assertWhenCollectFeedbackIntIsNotEnough() {
-        SuggestAlterCourse testStuck = new SuggestAlterCourse(1,1);
+        SuggestAlterCourseConsole testStuck = new SuggestAlterCourseConsole(1,1);
 
         testStuck.collectFeedbackAlterCourse();
 
