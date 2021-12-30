@@ -24,15 +24,18 @@ public class CampusPage implements ActionListener {
     private StuckExerciseConsole stuckExercise = new StuckExerciseConsole();
     private Exercise[] JsonCourse; // lege lijst oefeningen. ---> Hoe override ik die?
     private ListIterator<Exercise> exerciseListIterator;
+
+    // Swing Components
     private Buttons buttons = new Buttons();
     private Labels labels = new Labels();
     private Checkboxes checkboxes = new Checkboxes();
     private SwingStuckExercise stuckExerciseSwing = new SwingStuckExercise();
+    private TextAreas textAreas = new TextAreas();
+    private Images images = new Images();
 
 
 
     JFrame frame = new JFrame();
-    JTextArea discription = new JTextArea("");
     JList<Exercise> alterlistFrontflip;
 
     // Labels
@@ -44,6 +47,8 @@ public class CampusPage implements ActionListener {
     JLabel titleLable = labels.getTitleLable();
     JLabel attemptsLabel = stuckExerciseSwing.getAttempts();
     JLabel frustrationLabel = stuckExerciseSwing.getFrustration();
+    JLabel media = images.getMedia();
+
 
     // Buttons
     JButton completeButton = buttons.getCompleteButton();
@@ -63,9 +68,10 @@ public class CampusPage implements ActionListener {
     JCheckBox checkBox2 = checkboxes.getCheckBox2();
     JCheckBox checkBox3 = checkboxes.getCheckBox3();
 
-    // Textfields
+    // Textfields + Area's
     JTextField attempts = stuckExerciseSwing.getAttemptsField();
     JTextField frustration = stuckExerciseSwing.getFrustrationField();
+    JTextArea discription = textAreas.getDiscription();
 
 
     public CampusPage(Campus campus) throws IOException {
@@ -91,14 +97,6 @@ public class CampusPage implements ActionListener {
         // Interaction User
         nameGymnast.setText("Name: " + gymnast.getName());
         pointsGymnast.setText("Points: " + gymnast.getPoints());
-
-        discription.setBounds(20, 100, 350, 200);
-        discription.setLineWrap(true);
-        discription.setWrapStyleWord(true);
-        discription.setText("Hello gymnast, welcome to the Gymnast-Application\n\nWith this awesome app we will help you " +
-                "improve your technique in a fun, safe and correct way. You will learn all sorts of fun exercises that" +
-                "will help you with your journey to the next level!  ");
-
 
 
         select.addActionListener(new ActionListener() {
@@ -148,6 +146,8 @@ public class CampusPage implements ActionListener {
         frame.add(frustrationLabel);
         frame.add(attemptsLabel);
         frame.add(alterCourse);
+        frame.add(media);
+
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(750,750);
@@ -166,6 +166,7 @@ public class CampusPage implements ActionListener {
             exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
             checkboxes.visibleCheckboxesCourse();
             buttons.visibleCoursebuttonseFalse();
+            media.setIcon(images.getFrontflipCourse());
             visibleExerciseButtonsTrue();
 
         }
@@ -175,6 +176,7 @@ public class CampusPage implements ActionListener {
             exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
             checkboxes.visibleCheckboxesCourse();
             buttons.visibleCoursebuttonseFalse();
+            media.setIcon(images.getHandspringCourse());
             visibleExerciseButtonsTrue();
 
         }
@@ -209,11 +211,13 @@ public class CampusPage implements ActionListener {
 
         if (e.getSource() == submitAtt){
             stuckExerciseSwing.attemptsExercise();
+            stuckExerciseSwing.attempts.setText("Number attempts: " + attempts.getText());
 
         }
 
         if (e.getSource() == submitFrus){
             stuckExerciseSwing.frustrationScore();
+            stuckExerciseSwing.frustration.setText("Frustration Score 1-3: " + frustration.getText());
         }
 
         if (e.getSource() == alterCourse){

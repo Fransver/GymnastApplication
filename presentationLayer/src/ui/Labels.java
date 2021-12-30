@@ -12,6 +12,7 @@ public class Labels {
     private JLabel pointsGymnast = new JLabel();
     private JLabel titleLable = new JLabel();
 
+
     public Labels() {
         titleLable.setText("Title Exercise");
         titleLable.setBounds(20, 70, 200, 20);
@@ -37,6 +38,11 @@ public class Labels {
         pointsGymnast.setFocusable(false);
         pointsGymnast.setBounds(600, 30, 300, 20);
         pointsGymnast.setFont(new Font(null, Font.BOLD, 15));
+
+
+
+
+
     }
 
     public JLabel getWelcomeLabel() {

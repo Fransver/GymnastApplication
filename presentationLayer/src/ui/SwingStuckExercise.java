@@ -14,6 +14,7 @@ public class SwingStuckExercise implements IStuckExercise {
     JLabel attempts = new JLabel();
     JLabel frustration = new JLabel();
 
+
     private int frustrationScore;
     private int attemptsExercise;
 
@@ -27,10 +28,11 @@ public class SwingStuckExercise implements IStuckExercise {
         submitatt.setFocusable(true);
         submitatt.setBounds(600, 100,80,25);
         submitatt.setText("Submit");
-        attempts.setText("Number attempts");
+        attempts.setText("Number attempts: " );
         attempts.setBounds(400, 70, 175, 25);
         attempts.setVisible(false);
         attempts.setFocusable(true);
+
 
         frustrationField.setVisible(false);
         frustrationField.setFocusable(true);
@@ -45,12 +47,17 @@ public class SwingStuckExercise implements IStuckExercise {
         frustration.setFocusable(true);
         frustration.setBounds(400,144,175,25);
 
+
+
+
         alterCourse.setVisible(false);
         alterCourse.setFocusable(true);
-        alterCourse.setBounds(400,275,120,25);
+        alterCourse.setBounds(400,230,120,25);
         alterCourse.setText("Alter Course ");
 
     }
+
+
 
     public JButton getAlterCourse() {
         return alterCourse;
@@ -83,9 +90,20 @@ public class SwingStuckExercise implements IStuckExercise {
 
 
     @Override
-    public int attemptsExercise() {
+    public int attemptsExercise() { // Omzetten aantal herhalingen naar een score voor alternatieve cursus.
         try {
-            attemptsExercise = Integer.parseInt(attemptsField.getText());
+
+            int attempts = Integer.parseInt(attemptsField.getText());
+            if (attempts >= 10){
+                attemptsExercise = 2;
+            } else if (attempts >=20){
+                attemptsExercise =3;
+            } else if (attempts <10){
+                attemptsExercise =1;
+            } else {
+                JOptionPane.showMessageDialog(null,"Wrong Input");
+
+            }
             return attemptsExercise;
 
         } catch (Exception e){
@@ -129,6 +147,7 @@ public class SwingStuckExercise implements IStuckExercise {
         submitfrus.setVisible(true);
         submitatt.setVisible(true);
         alterCourse.setVisible(true);
+
     }
 
     public void stuckExerciseFieldsVisibleFalse(){
@@ -139,5 +158,6 @@ public class SwingStuckExercise implements IStuckExercise {
         submitfrus.setVisible(false);
         submitatt.setVisible(false);
         alterCourse.setVisible(false);
+
     }
 }

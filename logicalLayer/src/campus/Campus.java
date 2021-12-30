@@ -17,7 +17,6 @@ public class Campus {
     private Exercise[] listAlterExercisesFrontflip;
 
 
-    Scanner myScanner = new Scanner(System.in);
     IDataLayer dataLayer;
 
     public Campus(IDataLayer dataLayer) throws IOException {

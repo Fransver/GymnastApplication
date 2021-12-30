@@ -19,14 +19,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        /**
-         * LOGIN:  Iris
-         * Password: TVSomeren
-         */
-
-//        IdAndPasswords idandpasswords = new IdAndPasswords();
-//        new LoginPage(idandpasswords.getLoginInfo());
-
         IDataLayer dataLayer = new DataLayer(); //Interface vanuit de dataLayer
         Campus campus = new Campus(dataLayer);
         CampusPage campusPage = new CampusPage(campus); //
