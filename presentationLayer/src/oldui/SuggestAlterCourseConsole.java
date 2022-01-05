@@ -1,42 +1,21 @@
-package ui;
+package oldui;
 
-import interfaces.IStuckExercise;
-
-import javax.swing.*;
 import java.util.Scanner;
 
-public class StuckExerciseConsole implements IStuckExercise {
-
-    Scanner scanner = new Scanner(System.in);
+public class SuggestAlterCourseConsole { // Main function for deciding if user benefits from another course.
 
     private int frustrationScore;
     private int attemptsExercise;
 
-public StuckExerciseConsole(){
+    Scanner scanner = new Scanner(System.in);
 
-}
+    public SuggestAlterCourseConsole(int frustrationScore, int attemptsExercise){
 
-    public int collectFeedbackAlterCourse(){
-        int feedbackscore = attemptsExercise + frustrationScore;
-        return feedbackscore;
+        this.frustrationScore = frustrationScore;
+        this.attemptsExercise = attemptsExercise;
     }
 
-    @Override
-    public boolean userIsStuck() {
-        attemptsExercise();
-        frustrationScore();
-        int feedbackScore = collectFeedbackAlterCourse();
-        if (feedbackScore >= 4){
-            return true;
-        } else if (feedbackScore <= 3){
-            JOptionPane.showMessageDialog(null, "Please try a little longer");
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect input");
-        } return  false;
-    }
-
-    @Override
-    public int attemptsExercise() {
+    public int getAttemptsExercise() {
         System.out.println("Give an estimate of the number of attempts: ");
         System.out.println("1)\t0-10 Attempts ");
         System.out.println("2)\t11-20 Attempts ");
@@ -51,8 +30,7 @@ public StuckExerciseConsole(){
         return attemptsExercise;
     }
 
-    @Override
-    public int frustrationScore() {
+    public int getFrustrationScore() {
         System.out.println("How difficult did the exercise feel on a scale from 1 to 3?");
         System.out.println("1)\tCan't get it quit right. ");
         System.out.println("2)\tSomething feels wrong in my technique and performance. ");
@@ -62,6 +40,15 @@ public StuckExerciseConsole(){
             System.out.println("You Choose " + frustrationScore);
         } catch (Exception e) {
             System.out.println("Wrong input");
-        } return frustrationScore;
+        }            return frustrationScore;
+
+    }
+
+
+
+
+    public int collectFeedbackAlterCourse(){
+        int feedbackscore = attemptsExercise + frustrationScore;
+        return feedbackscore;
     }
 }

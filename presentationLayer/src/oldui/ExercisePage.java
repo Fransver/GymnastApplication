@@ -1,7 +1,6 @@
 package oldui;
 
 import campus.Scoremanager;
-import ui.StuckExerciseConsole;
 import models.Exercise;
 import models.Gymnast;
 

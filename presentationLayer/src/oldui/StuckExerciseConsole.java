@@ -1,21 +1,42 @@
-package ui;
+package oldui;
 
+import interfaces.IStuckExercise;
+
+import javax.swing.*;
 import java.util.Scanner;
 
-public class SuggestAlterCourseConsole { // Main function for deciding if user benefits from another course.
+public class StuckExerciseConsole implements IStuckExercise {
+
+    Scanner scanner = new Scanner(System.in);
 
     private int frustrationScore;
     private int attemptsExercise;
 
-    Scanner scanner = new Scanner(System.in);
+public StuckExerciseConsole(){
 
-    public SuggestAlterCourseConsole(int frustrationScore, int attemptsExercise){
+}
 
-        this.frustrationScore = frustrationScore;
-        this.attemptsExercise = attemptsExercise;
+    public int collectFeedbackAlterCourse(){
+        int feedbackscore = attemptsExercise + frustrationScore;
+        return feedbackscore;
     }
 
-    public int getAttemptsExercise() {
+    @Override
+    public boolean userIsStuck() {
+        attemptsExercise();
+        frustrationScore();
+        int feedbackScore = collectFeedbackAlterCourse();
+        if (feedbackScore >= 4){
+            return true;
+        } else if (feedbackScore <= 3){
+            JOptionPane.showMessageDialog(null, "Please try a little longer");
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect input");
+        } return  false;
+    }
+
+    @Override
+    public int attemptsExercise() {
         System.out.println("Give an estimate of the number of attempts: ");
         System.out.println("1)\t0-10 Attempts ");
         System.out.println("2)\t11-20 Attempts ");
@@ -30,7 +51,8 @@ public class SuggestAlterCourseConsole { // Main function for deciding if user b
         return attemptsExercise;
     }
 
-    public int getFrustrationScore() {
+    @Override
+    public int frustrationScore() {
         System.out.println("How difficult did the exercise feel on a scale from 1 to 3?");
         System.out.println("1)\tCan't get it quit right. ");
         System.out.println("2)\tSomething feels wrong in my technique and performance. ");
@@ -40,15 +62,6 @@ public class SuggestAlterCourseConsole { // Main function for deciding if user b
             System.out.println("You Choose " + frustrationScore);
         } catch (Exception e) {
             System.out.println("Wrong input");
-        }            return frustrationScore;
-
-    }
-
-
-
-
-    public int collectFeedbackAlterCourse(){
-        int feedbackscore = attemptsExercise + frustrationScore;
-        return feedbackscore;
+        } return frustrationScore;
     }
 }

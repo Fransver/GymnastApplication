@@ -21,8 +21,7 @@ public class CampusPage implements ActionListener {
     private Gymnast gymnast;
     private Campus campus;
     private Scoremanager scoremanager = new Scoremanager();
-    private StuckExerciseConsole stuckExercise = new StuckExerciseConsole();
-    private Exercise[] JsonCourse; // lege lijst oefeningen. ---> Hoe override ik die?
+    private Exercise[] JsonCourse;
     private ListIterator<Exercise> exerciseListIterator;
 
     // Swing Components
@@ -62,6 +61,7 @@ public class CampusPage implements ActionListener {
     JButton submitAtt = stuckExerciseSwing.getSubmitatt();
     JButton submitFrus = stuckExerciseSwing.getSubmitfrus();
     JButton alterCourse = stuckExerciseSwing.getAlterCourse();
+    JButton homeButton = buttons.getHome();
 
     // Checkboxes
     JCheckBox checkBox1 = checkboxes.getCheckBox1();
@@ -73,6 +73,10 @@ public class CampusPage implements ActionListener {
     JTextField frustration = stuckExerciseSwing.getFrustrationField();
     JTextArea discription = textAreas.getDiscription();
 
+    // Images
+    ImageIcon titleScreen = images.getTitleScreen();
+
+
 
     public CampusPage(Campus campus) throws IOException {
 
@@ -80,7 +84,8 @@ public class CampusPage implements ActionListener {
         this.gymnast = campus.getGymnasts()[0];
         JlistAlterExercisesFrontflip();
 
-
+        // Media
+        media.setIcon(titleScreen);
 
         // Action Listener
         completeButton.addActionListener(this);
@@ -93,6 +98,9 @@ public class CampusPage implements ActionListener {
         submitAtt.addActionListener(this);
         submitFrus.addActionListener(this);
         alterCourse.addActionListener(this);
+        homeButton.addActionListener(this);
+        select.addActionListener(this);
+
 
         // Interaction User
         nameGymnast.setText("Name: " + gymnast.getName());
@@ -115,7 +123,7 @@ public class CampusPage implements ActionListener {
 
 
         alterlistFrontflip.setFocusable(false);
-        alterlistFrontflip.setBounds(400,100,250,200);
+        alterlistFrontflip.setBounds(400,100,250,100);
         alterlistFrontflip.setVisibleRowCount(9);
         alterlistFrontflip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         alterlistFrontflip.setVisible(false);
@@ -134,6 +142,7 @@ public class CampusPage implements ActionListener {
         frame.add(stuckButton);
         frame.add(previousButton);
         frame.add(courseButton);
+        frame.add(homeButton);
         frame.add(select);
         frame.add(nameGymnast);
         frame.add(pointsGymnast);
@@ -147,6 +156,7 @@ public class CampusPage implements ActionListener {
         frame.add(attemptsLabel);
         frame.add(alterCourse);
         frame.add(media);
+
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -202,11 +212,16 @@ public class CampusPage implements ActionListener {
         if (e.getSource() == courseButton) {
             visibleCourseTrue();
             buttons.visibleExerciseButtonsFalse();
+            homeButton.setVisible(true);
         }
 
         if (e.getSource() == stuckButton) {
             stuckExerciseSwing.stuckExerciseFieldsVisibleTrue();
             alterlistFrontflip.setVisible(false);
+        }
+
+        if (e.getSource() == homeButton){
+            homeScreen();
         }
 
         if (e.getSource() == submitAtt){
@@ -227,6 +242,12 @@ public class CampusPage implements ActionListener {
                 select.setVisible(true);
 
             }
+        }
+
+        if (e.getSource() == select){
+            alterCourseFrontflip();
+            alterlistFrontflip.setVisible(false);
+
         }
 
 
@@ -268,6 +289,14 @@ public class CampusPage implements ActionListener {
     }
 
 
+    public void homeScreen(){
+        media.setIcon(titleScreen);
+        visibleCourseTrue();
+        welcomeLabel.setText("Gymnast-Application");
+        welcomeLabel.setVisible(true);
+        checkboxes.visibleCheckboxesFalse();
+    }
+
     public void visibleCourseTrue() {
         frontFlip.setVisible(true);
         handspring.setVisible(true);
@@ -300,7 +329,6 @@ public class CampusPage implements ActionListener {
     }
 
 
-
     public void previousExercise() {
         if (exerciseListIterator.hasPrevious()) {
             Exercise previousEx = exerciseListIterator.previous();
@@ -309,6 +337,16 @@ public class CampusPage implements ActionListener {
             int score =   gymnast.getPoints() + scoremanager.subtractscoreExercise(); // Ook hier de CAMPUS-Class gebruikt voor de -score
             pointsGymnast.setText("Points: " + score);
         }
+    }
+
+    public void alterCourseFrontflip(){
+        JsonCourse = campus.getListAlterExercisesFrontflip();
+        exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
+        checkboxes.visibleCheckboxesCourse();
+        buttons.visibleCoursebuttonseFalse();
+        media.setIcon(images.getFrontflipCourse());
+        visibleExerciseButtonsTrue();
+        select.setVisible(false);
     }
 
 

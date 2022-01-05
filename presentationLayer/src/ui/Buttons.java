@@ -14,9 +14,13 @@ public class Buttons {
     private JButton fullLayout = new JButton("Full Layout");
     private JButton handspring = new JButton("Handspring");
     private JButton select = new JButton("Select");
+    private JButton home = new JButton("Home");
 
     public Buttons(){
 
+        home.setFocusable(false);
+        home.setBounds(600, 630, 100, 20);
+        home.setVisible(false);
 
         completeButton.setFocusable(false);
         completeButton.setBounds(600, 630, 100, 20);
@@ -44,7 +48,7 @@ public class Buttons {
         handspring.setFocusable(false);
 
         select.setFocusable(false);
-        select.setBounds(550,325,100,20);
+        select.setBounds(550,225,100,20);
         select.setVisible(false);
 
     }
@@ -79,6 +83,10 @@ public class Buttons {
 
     public JButton getSelect() {
         return select;
+    }
+
+    public JButton getHome() {
+        return home;
     }
 
     public void visibleExerciseButtonsFalse() {

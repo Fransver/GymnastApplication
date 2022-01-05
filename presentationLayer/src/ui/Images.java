@@ -8,12 +8,15 @@ public class Images {
 
     private ImageIcon frontflipCourse = new ImageIcon("Media/frontflip1.png");
     private ImageIcon handspringCourse = new ImageIcon("Media/handspring1.png");
+    private ImageIcon titleScreen = new ImageIcon("Media/TitleImage.jpg");
 
     public Images(){
 
-        media.setBounds(20,250,700,150);
+        media.setBounds(20,250,700,250);
         media.setVisible(true);
         media.setFocusable(true);
+
+
 
 
 
@@ -31,5 +34,9 @@ public class Images {
 
     public ImageIcon getHandspringCourse() {
         return handspringCourse;
+    }
+
+    public ImageIcon getTitleScreen() {
+        return titleScreen;
     }
 }

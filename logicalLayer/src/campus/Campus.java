@@ -15,6 +15,7 @@ public class Campus {
     private Exercise[] listExercisesFrontflip;
     private Exercise[] listExercisesHandspring;
     private Exercise[] listAlterExercisesFrontflip;
+    private Scoremanager scoremanager = new Scoremanager();
 
 
     IDataLayer dataLayer;
