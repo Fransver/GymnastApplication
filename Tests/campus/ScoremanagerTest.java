@@ -8,11 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class ScoremanagerTest {
 
     Scoremanager testScoremanager = new Scoremanager();
-    Gymnast gym1 = new Gymnast(1, "test", "male", 200, "testclub");
 
 
     @org.junit.jupiter.api.Test // met aangemaakte Gymnast
     void distributescoreCourse() {
+
+        // mock gymnast
+        Gymnast gym1 = new Gymnast(1, "test", "male", 200, "testclub");
 
         int expectedScore = 250;
         int actualScore = gym1.getPoints() + testScoremanager.distributescoreCourse();
@@ -34,6 +36,10 @@ class ScoremanagerTest {
 
     @org.junit.jupiter.api.Test
     void subtractscoreExercise() {
+        // mock gymnast
+        Gymnast gym1 = new Gymnast(1, "test", "male", 200, "testclub");
+
+
         int expectedScore = 190;
         int actualScore = gym1.getPoints() + testScoremanager.subtractscoreExercise();
 

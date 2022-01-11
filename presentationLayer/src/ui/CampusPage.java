@@ -2,7 +2,7 @@ package ui;
 
 import campus.Campus;
 import campus.Scoremanager;
-import interfaces.IDataLayer;
+import interfaces.ICompleteExercise;
 import models.Exercise;
 import models.Gymnast;
 
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
-public class CampusPage implements ActionListener {
+public class CampusPage implements ActionListener, ICompleteExercise {
 
     private Gymnast gymnast;
     private Campus campus;
@@ -29,6 +29,7 @@ public class CampusPage implements ActionListener {
     private Labels labels = new Labels();
     private Checkboxes checkboxes = new Checkboxes();
     private SwingStuckExercise stuckExerciseSwing = new SwingStuckExercise();
+    private SwingCompleteExercise completeExercise = new SwingCompleteExercise();
     private TextAreas textAreas = new TextAreas();
     private Images images = new Images();
 
@@ -105,6 +106,9 @@ public class CampusPage implements ActionListener {
         // Interaction User
         nameGymnast.setText("Name: " + gymnast.getName());
         pointsGymnast.setText("Points: " + gymnast.getPoints());
+        discription.setText("Hello " + gymnast.getName() + "\n\n");
+        textAreas.standardWelcome();
+
 
 
         select.addActionListener(new ActionListener() {
@@ -172,23 +176,11 @@ public class CampusPage implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == frontFlip) {
-            JsonCourse = campus.getListExercisesFrontflip();
-            exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
-            checkboxes.visibleCheckboxesCourse();
-            buttons.visibleCoursebuttonseFalse();
-            media.setIcon(images.getFrontflipCourse());
-            visibleExerciseButtonsTrue();
-
+            frontFlipCourse();
         }
 
         if (e.getSource() == handspring) {
-            JsonCourse = campus.getListExercisesHandspring();
-            exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
-            checkboxes.visibleCheckboxesCourse();
-            buttons.visibleCoursebuttonseFalse();
-            media.setIcon(images.getHandspringCourse());
-            visibleExerciseButtonsTrue();
-
+            handspringCourse();
         }
 
         if (e.getSource() == fullLayout) {
@@ -197,12 +189,11 @@ public class CampusPage implements ActionListener {
 
         if (e.getSource() == completeButton) {
 
-            checkboxes.visibleCheckboxesFrontFlip();
-            try {
-                completeExercise();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            completeExercise();
+            checkboxes.visibleCheckboxesTrue();
+
+
+
         }
 
         if (e.getSource() == previousButton) {
@@ -254,7 +245,7 @@ public class CampusPage implements ActionListener {
     }
 
 
-    public void completeExercise() throws IOException {
+    public boolean completeExercise()  {
 
         if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
             JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
@@ -265,7 +256,7 @@ public class CampusPage implements ActionListener {
                 discription.setText(nextEx.getDiscription());
                 int score = scoremanager.distributescoreExercise() + gymnast.getPoints();
                 pointsGymnast.setText("Points: " + score);
-                checkboxes.visibleCheckboxesFalse();
+
 
 
             } else {
@@ -286,6 +277,7 @@ public class CampusPage implements ActionListener {
             JOptionPane.showMessageDialog(null, "If you can't complete 2 to 3 requirements, maybe it is better" +
                     "to practice with the previous exercise. ");
         }
+        return false;
     }
 
 
@@ -295,6 +287,11 @@ public class CampusPage implements ActionListener {
         welcomeLabel.setText("Gymnast-Application");
         welcomeLabel.setVisible(true);
         checkboxes.visibleCheckboxesFalse();
+        titleLable.setText("");
+        discription.setText("Hello gymnast, welcome to the Gymnast-Application\n\nWith this awesome app we will help you " +
+                "improve your technique in a fun, safe and correct way. You will learn all sorts of fun exercises that" +
+                "will help you with your journey to the next level!  ");
+
     }
 
     public void visibleCourseTrue() {
@@ -347,6 +344,27 @@ public class CampusPage implements ActionListener {
         media.setIcon(images.getFrontflipCourse());
         visibleExerciseButtonsTrue();
         select.setVisible(false);
+    }
+
+    public void frontFlipCourse(){
+        JsonCourse = campus.getListExercisesFrontflip();
+        exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
+        checkboxes.visibleCheckboxesFrontFlip();
+        buttons.visibleCoursebuttonseFalse();
+        media.setIcon(images.getFrontflipCourse());
+        visibleExerciseButtonsTrue();
+        welcomeLabel.setText("Frontflip Course");
+    }
+
+    public void handspringCourse(){
+        JsonCourse = campus.getListExercisesHandspring();
+        exerciseListIterator = Arrays.stream(JsonCourse).toList().listIterator();
+        checkboxes.visibleCheckboxesHandspring();
+        buttons.visibleCoursebuttonseFalse();
+        media.setIcon(images.getHandspringCourse());
+        visibleExerciseButtonsTrue();
+        welcomeLabel.setText("Handspring Course");
+
     }
 
 

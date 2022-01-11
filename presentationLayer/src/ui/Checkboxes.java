@@ -42,10 +42,28 @@ public class Checkboxes {
         checkBox3.setText("I can perform 5 good tries in a row");
     }
 
+    public void visibleCheckboxesHandspring(){
+        checkBox1.setVisible(true);
+        checkBox2.setVisible(true);
+        checkBox3.setVisible(true);
+        checkBox1.setText("I can maintain core tension");
+        checkBox2.setText("my arms are straight, shoulders open");
+        checkBox3.setText("I can perform 5 good tries in a row");
+    }
+
     public void visibleCheckboxesFalse(){
         checkBox1.setVisible(false);
         checkBox2.setVisible(false);
         checkBox3.setVisible(false);
+//        checkBox1.setSelected(false);
+//        checkBox2.setSelected(false);
+//        checkBox3.setSelected(false);
+    }
+
+    public void visibleCheckboxesTrue(){
+        checkBox1.setVisible(true);
+        checkBox2.setVisible(true);
+        checkBox3.setVisible(true);
         checkBox1.setSelected(false);
         checkBox2.setSelected(false);
         checkBox3.setSelected(false);
