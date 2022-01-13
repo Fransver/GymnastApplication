@@ -30,7 +30,6 @@ public class CampusPage implements ActionListener{
     private Images images = new Images();
 
 
-
     JFrame frame = new JFrame();
     JList<Exercise> alterlistFrontflip;
 
@@ -184,9 +183,10 @@ public class CampusPage implements ActionListener{
         }
 
         if (e.getSource() == completeButton) {
-
             completeExercise();
             checkboxes.visibleCheckboxesTrue();
+
+
 
 
 
@@ -246,6 +246,7 @@ public class CampusPage implements ActionListener{
 
         if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
             JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
+            checkboxes.visibleCheckboxesFalse();
 
             Exercise nextEx = exerciseListIterator.next();
             if (exerciseListIterator.hasNext()) {
@@ -253,6 +254,7 @@ public class CampusPage implements ActionListener{
                 discription.setText(nextEx.getDiscription());
                 int score = campus.distributescoreExercise() + gymnast.getPoints();
                 pointsGymnast.setText("Points: " + score);
+
 
 
 
@@ -341,6 +343,10 @@ public class CampusPage implements ActionListener{
         media.setIcon(images.getFrontflipCourse());
         visibleExerciseButtonsTrue();
         select.setVisible(false);
+        // Tijdelijke oplossing doordat ik een lijst gebruik in plaats van de gebruiker een CURRENTEXERCISE meegeef.
+        // Dit doe ik volgende keer zeker anders.
+        discription.setText(Arrays.stream(campus.getListAlterExercisesFrontflip()).toList().get(0).getDiscription());
+        titleLable.setText(Arrays.stream(campus.getListAlterExercisesFrontflip()).toList().get(0).getExerciseName());
     }
 
     public void frontFlipCourse(){
