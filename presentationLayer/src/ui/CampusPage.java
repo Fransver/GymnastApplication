@@ -1,8 +1,6 @@
 package ui;
 
 import campus.Campus;
-import campus.Scoremanager;
-import interfaces.ICompleteExercise;
 import models.Exercise;
 import models.Gymnast;
 
@@ -16,11 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
-public class CampusPage implements ActionListener, ICompleteExercise {
+public class CampusPage implements ActionListener{
 
     private Gymnast gymnast;
     private Campus campus;
-    private Scoremanager scoremanager = new Scoremanager();
     private Exercise[] JsonCourse;
     private ListIterator<Exercise> exerciseListIterator;
 
@@ -29,7 +26,6 @@ public class CampusPage implements ActionListener, ICompleteExercise {
     private Labels labels = new Labels();
     private Checkboxes checkboxes = new Checkboxes();
     private SwingStuckExercise stuckExerciseSwing = new SwingStuckExercise();
-    private SwingCompleteExercise completeExercise = new SwingCompleteExercise();
     private TextAreas textAreas = new TextAreas();
     private Images images = new Images();
 
@@ -238,14 +234,15 @@ public class CampusPage implements ActionListener, ICompleteExercise {
         if (e.getSource() == select){
             alterCourseFrontflip();
             alterlistFrontflip.setVisible(false);
-
+            checkboxes.visibleCheckboxesFrontFlip();
         }
 
 
     }
 
 
-    public boolean completeExercise()  {
+    public boolean completeExercise()  { // Hier is de implementatie van de interface COMPLETE opgenomen
+
 
         if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected()) {
             JOptionPane.showMessageDialog(null, "Great job, continue to the next exercise! ");
@@ -254,14 +251,14 @@ public class CampusPage implements ActionListener, ICompleteExercise {
             if (exerciseListIterator.hasNext()) {
                 titleLable.setText(nextEx.getExerciseName());
                 discription.setText(nextEx.getDiscription());
-                int score = scoremanager.distributescoreExercise() + gymnast.getPoints();
+                int score = campus.distributescoreExercise() + gymnast.getPoints();
                 pointsGymnast.setText("Points: " + score);
 
 
 
             } else {
                 JOptionPane.showMessageDialog(null, "Congrats, you have completed the course!");
-                int score = scoremanager.distributescoreCourse() + gymnast.getPoints();
+                int score = campus.distributescoreCourse() + gymnast.getPoints();
                 pointsGymnast.setText("Points" + score);
                 gymnast.setPoints(score);
             }
@@ -331,7 +328,7 @@ public class CampusPage implements ActionListener, ICompleteExercise {
             Exercise previousEx = exerciseListIterator.previous();
             titleLable.setText(previousEx.getExerciseName());
             discription.setText(previousEx.getDiscription());
-            int score =   gymnast.getPoints() + scoremanager.subtractscoreExercise(); // Ook hier de CAMPUS-Class gebruikt voor de -score
+            int score =   gymnast.getPoints() + campus.subtractscoreExercise(); // Ook hier de CAMPUS-Class gebruikt voor de -score
             pointsGymnast.setText("Points: " + score);
         }
     }

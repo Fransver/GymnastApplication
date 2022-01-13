@@ -1,6 +1,6 @@
 package oldui;
 
-import campus.Scoremanager;
+import oldLogica.Scoremanager;
 import models.Exercise;
 import models.Gymnast;
 

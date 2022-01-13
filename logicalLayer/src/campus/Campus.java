@@ -1,7 +1,9 @@
 package campus;
 
 
+import interfaces.ICompleteExercise;
 import interfaces.IDataLayer;
+import interfaces.IScoreDistributer;
 import models.Exercise;
 import models.Gymnast;
 
@@ -9,13 +11,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class Campus {
+public class Campus implements ICompleteExercise, IScoreDistributer {
 
     private Gymnast[] listGymnasts;
     private Exercise[] listExercisesFrontflip;
     private Exercise[] listExercisesHandspring;
     private Exercise[] listAlterExercisesFrontflip;
-    private Scoremanager scoremanager = new Scoremanager();
+    private int score;
 
 
     IDataLayer dataLayer;
@@ -47,8 +49,28 @@ public class Campus {
     }
 
 
+    @Override
+    public boolean completeExercise() {
+        return false;
+    }
 
+    @Override
+    public int distributescoreCourse() {
+        score += 50;
+        return score;
+    }
 
+    @Override
+    public int distributescoreExercise() {
+        score += 10;
+        return score;
+    }
+
+    @Override
+    public int subtractscoreExercise() {
+        score -= 10;
+        return score;
+    }
 }
 
 

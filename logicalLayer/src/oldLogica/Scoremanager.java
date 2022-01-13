@@ -1,4 +1,4 @@
-package campus;
+package oldLogica;
 
 import interfaces.IScoreDistributer;
 

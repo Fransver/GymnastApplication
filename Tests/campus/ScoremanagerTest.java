@@ -1,13 +1,15 @@
 package campus;
 
 import models.Gymnast;
+import oldLogica.Scoremanager;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScoremanagerTest {
 
-    Scoremanager testScoremanager = new Scoremanager();
+    Scoremanager testScoremanager = new Scoremanager(); // Voor het testen van de score hier toch de oude gebruikt.
+    //
 
 
     @org.junit.jupiter.api.Test // met aangemaakte Gymnast
