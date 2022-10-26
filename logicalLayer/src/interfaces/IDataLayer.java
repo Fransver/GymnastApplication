@@ -1,11 +1,10 @@
 package interfaces;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import models.Exercise;
 import models.Gymnast;
-
 import java.io.IOException;
+
+// Interface voor Loose Coupling injecteren in Logica laag
 
 public interface IDataLayer {
     Gymnast[] getGymnasts() throws  IOException;

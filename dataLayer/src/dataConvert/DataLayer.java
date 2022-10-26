@@ -1,9 +1,5 @@
 package dataConvert;
 
-
-// krijg de data niet werkend.
-
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,11 +14,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * To do
- * 1. Methode schrijven voor WRITE VALUE van java naar de Json files.
- */
-
+// Data omzetten van Json naar Java
 
 public class DataLayer implements IDataLayer {
 
@@ -37,7 +29,7 @@ public class DataLayer implements IDataLayer {
     final String GymnastsDataFile = "gymnasts.json"; // Users
     final String FeedbackList = "feedback.json"; // from feedback Class to JSON
 
-    private String dataDirectoryName;
+    private final String dataDirectoryName; // Final gemaakt
 
 
     public DataLayer() {
@@ -151,20 +143,6 @@ public class DataLayer implements IDataLayer {
         // convert the Json file
         return mapper.readValue(Paths.get(dataDirectoryName, FeedbackList).toFile(), Feedback[].class);
     }
-
-//    public SuggestAlterCourseConsole[] getFeedbackfromAlterCourse() throws JsonParseException, JsonMappingException, IOException {
-//        // Load Feedback data
-//        Feedback[] feedbacks = loadFeedback();
-//        // Create the feedback data
-//        List<SuggestAlterCourseConsole> feedbackList = new ArrayList<SuggestAlterCourseConsole>();
-//        for (Feedback feedbackDate : feedbacks) {
-//            SuggestAlterCourseConsole feedback = new SuggestAlterCourseConsole(feedbackDate.frustrationScore,
-//                    feedbackDate.attemptsExercise);
-//            feedbackList.add(feedback);
-//        }
-//        return feedbackList.toArray(new SuggestAlterCourseConsole[0]);
-//    }
-
 }
 
 
